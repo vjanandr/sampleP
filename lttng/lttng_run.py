@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 import os
 
-lttngMaxProvider=2000
+lttng_provider_cnt_fp = open("lttng_provider_cnt","r")
+lttngMaxProvider=int(lttng_provider_cnt_fp.read())
+lttng_provider_cnt_fp.close()
 
 if __name__=="__main__":
     index = 0;
@@ -11,11 +13,11 @@ if __name__=="__main__":
 #        print(d)
         if os.path.exists(d):
             os.chdir(d)
-            lttng_cmd_str_1 = "lttng create tp_session_%s > /dev/null 2>&1"%(str(index))
+            lttng_cmd_str_1 = "lttng create tp_session_%s > /dev/null"%(str(index))
             os.system(lttng_cmd_str_1)
-            lttng_cmd_str_2 = "lttng enable-event -u -s tp_session_{0} 'tp_{0}:*' > /dev/null 2>&1".format(str(index))
+            lttng_cmd_str_2 = "lttng enable-event -u -s tp_session_{0} 'tp_{0}:*'".format(str(index))
             os.system(lttng_cmd_str_2)
-            lttng_cmd_str_3 = "lttng start tp_session_%s > /dev/null 2>&1"%(str(index))
+            lttng_cmd_str_3 = "lttng start tp_session_%s"%(str(index))
             os.system(lttng_cmd_str_3)
             lttng_cmd_str_4 = "./tp_{0} &".format(str(index))
             os.system(lttng_cmd_str_4)

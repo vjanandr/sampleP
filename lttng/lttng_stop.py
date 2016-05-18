@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 import os
 
-lttngMaxProvider=2000
+lttng_provider_cnt_fp = open("lttng_provider_cnt","r")
+lttngMaxProvider=int(lttng_provider_cnt_fp.read())
+lttng_provider_cnt_fp.close()
 
 if __name__=="__main__":
     index = 0;

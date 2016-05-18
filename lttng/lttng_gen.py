@@ -126,6 +126,7 @@ int main (int argc, char *argv[])
      * you to have time to list its events. It's not needed otherwise.
      */
 //    getchar();
+        sleep(5);
 
     /*
      * A tracepoint() call. Arguments, as defined in hello-tp.h:
@@ -143,7 +144,6 @@ int main (int argc, char *argv[])
     tracepoint(tp_{0}, my_first_tracepoint, (int)pid, "Process ID:");
     for (x = 0; x < 50; ++x) {{
         tracepoint(tp_{0}, my_second_tracepoint, x, "x^2");
-        sleep(1);
     }}
 
   //  puts("Quitting now!");
@@ -159,7 +159,10 @@ int main (int argc, char *argv[])
 }}
 """
 
-lttngMaxProvider=2000
+lttng_provider_cnt_fp = open("lttng_provider_cnt","r")
+lttngMaxProvider=int(lttng_provider_cnt_fp.read())
+lttng_provider_cnt_fp.close()
+
 tp_h_f = ""
 def providerGen(index):
     global tp_h_f
