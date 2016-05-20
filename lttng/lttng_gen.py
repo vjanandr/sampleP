@@ -126,7 +126,7 @@ int main (int argc, char *argv[])
      * you to have time to list its events. It's not needed otherwise.
      */
 //    getchar();
-        sleep(5);
+     sleep(50);
 
     /*
      * A tracepoint() call. Arguments, as defined in hello-tp.h:
