@@ -150,7 +150,7 @@ int main (int argc, char *argv[])
 
     tracepoint(tp_{0}, my_third_tracepoint, x,
                "Checkout the third tracepoint");
-    tracef("my message, my integer: %d", 20);
+//    tracef("my message, my integer: %d", 20);
 
    // puts("Press enter again");
    // getchar();

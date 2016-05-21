@@ -5,17 +5,18 @@ lttng_provider_cnt_fp = open("lttng_provider_cnt","r")
 lttngMaxProvider=int(lttng_provider_cnt_fp.read())
 lttng_provider_cnt_fp.close()
 
-if __name__=="__main__":
+def main():
     lttng_session_start = False
     index = 0;
     cwd = os.getcwd()
 
-    lttng_cmd_str_1 = "lttng create tp_session --live > /dev/null"
+    lttng_cmd_str_1 = "lttng create tp_session --snapshot> /dev/null"
     print(lttng_cmd_str_1)
     os.system(lttng_cmd_str_1)
 
     while (index < lttngMaxProvider):
-        lttng_cmd_str_5 = "lttng enable-channel --num-subbuf 16 --subbuf-size 512k -u tp_channel_{0} -s tp_session".format(str(index))
+#        lttng_cmd_str_5 = "lttng enable-channel --num-subbuf 16 --subbuf-size 512k -u tp_channel_{0} -s tp_session".format(str(index))
+        lttng_cmd_str_5 = "lttng enable-channel -u tp_channel_{0} -s tp_session".format(str(index))
         print(lttng_cmd_str_5)
         os.system(lttng_cmd_str_5)
         index += 1
@@ -40,3 +41,7 @@ if __name__=="__main__":
 
             os.chdir(cwd)
         index += 1
+
+
+if __name__=="__main__":
+    main()
