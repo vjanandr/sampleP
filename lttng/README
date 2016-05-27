@@ -1,4 +1,5 @@
 lttng_provider_cnt          -- The file contains the required number of processes and tracepoint providers pairs.
+lttng_max_session_cnt       -- Maximum number of sessions
 lttng_gen.py                -- Generates the required number of programs(processes).
                                Each program would also define and use a unique tracepoint provider.
 lttng_compile.py            -- Compiles and generates the executables.
@@ -15,4 +16,37 @@ lttng_run_live_nS_pnC.py    -- Creates n live sessions and p/n channels per sess
                                Where p is the required number of processes and tracepoint pairs.
 lttng_run_snapshot_nS_pnC.py-- Creates n snapshot sessions p/n channels per session.
                                Where p is the required number of processes and tracepoint pairs.
+
+
+
+a. First set the lttng_provider_cnt and the lttng_max_session_cnt to appropriate values.
+
+echo 26 > lttng_provider_cnt
+echo 26 > lttng_max_session_cnt
+b. Run the Gen script to generate the required TracePoint Providers.
+   The gen script generates 3 files, one containing a main function generating 52 trace events
+   and 2 files(.h/.c) to declare and define the trace points.
+
+./lttng_gen.py
+
+c. Run the Compile Script to generate the executables.
+
+./lttng_compile.py
+
+d. Run the run script to spawn the required processes and the sessions to trace.
+
+./lttng_run_session_nS_1C.py
+
+Note:
+-----
+In the last session creation of the channel fails, only the first 25 session/channel pairs come up.
+<ErrorMsg>
+Error: Event tp_25:*: UST create channel failed (channel channel0, session tp_session_25)
+Error: No channel found in the session
+</ErrorMsg>
+
+e. Run the stop script to stop/destroy the sessions that were created.
+   Note one has to run the appropriate stop script depending on the run script in step (d).
+
+./lttng_stop_session_nS_1C.py
 

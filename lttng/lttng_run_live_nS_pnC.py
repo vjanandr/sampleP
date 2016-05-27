@@ -2,7 +2,7 @@
 # Live n sessions p:n channels per session, where p is the maximum number of tracepoint providers
 import os
 
-lttng_provider_cnt_fp = open("lttng_provider_cnt","r")
+lttng_provider_cnt_fp =r open("lttng_provider_cnt","r")
 lttngMaxProvider=int(lttng_provider_cnt_fp.read())
 lttng_provider_cnt_fp.close()
 

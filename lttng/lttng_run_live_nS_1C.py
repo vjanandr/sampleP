@@ -6,11 +6,14 @@ lttng_provider_cnt_fp = open("lttng_provider_cnt","r")
 lttngMaxProvider=int(lttng_provider_cnt_fp.read())
 lttng_provider_cnt_fp.close()
 
+lttng_max_session_cnt_fp = open("lttng_max_session_cnt","r")
+lttngMaxSessionCnt=int(lttng_provider_cnt_fp.read())
+lttng_provider_cnt_fp.close()
 if __name__=="__main__":
     cwd = os.getcwd()
 
     index = 0;
-    while (index < 25):
+    while (index < lttngMaxSessionCnt):
         lttng_cmd_str_1 = "lttng create tp_session_{0} --live > /dev/null".format(str(index))
         print(lttng_cmd_str_1)
         os.system(lttng_cmd_str_1)
@@ -28,7 +31,7 @@ if __name__=="__main__":
         if os.path.exists(d):
             os.chdir(d)
 
-            lttng_cmd_str_2 = "lttng enable-event -u -s tp_session_{1} -c tp_channel_0 'tp_{0}:*'".format(str(index), str(index % 25))
+            lttng_cmd_str_2 = "lttng enable-event -u -s tp_session_{1} -c tp_channel_0 'tp_{0}:*'".format(str(index), str(index % lttngMaxSessionCnt))
             print(lttng_cmd_str_2)
             os.system(lttng_cmd_str_2)
 
