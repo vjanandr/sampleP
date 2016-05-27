@@ -1,0 +1,18 @@
+lttng_provider_cnt          -- The file contains the required number of processes and tracepoint providers pairs.
+lttng_gen.py                -- Generates the required number of processes.
+                               Each process would also define and use a unique tracepoint provider.
+lttng_compile.py            -- Compiles and generates the executables.
+lttng_run*.py               -- Run scripts.
+lttng_run_1S_nC.py          -- Creates one session and n channels in the session.
+                               Where n is the required number of processes and tracepoint pairs.
+lttng_run_live_nS_1C.py     -- Creates n live session and 1 channel per session.
+                               Where n is the required number of processes and tracepoint pairs.
+lttng_run_session_nS_1C.py  -- Creates n sessions 1 channel per session.
+                               Where n is the required number of processes and tracepoint pairs.
+lttng_run_live_1S_nC.py     -- Creates 1 live session and n channel per session.
+                               Where n is the required number of processes and tracepoint pairs.
+lttng_run_live_nS_pnC.py    -- Creates n live sessions and p/n channels per session.
+                               Where p is the required number of processes and tracepoint pairs.
+lttng_run_snapshot_nS_pnC.py-- Creates n snapshot sessions p/n channels per session.
+                               Where p is the required number of processes and tracepoint pairs.
+
